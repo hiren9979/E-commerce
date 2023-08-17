@@ -1,0 +1,76 @@
+﻿@model Task1_databaseConnect.Models.Product
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<style>
+    /* Styling for the details section */
+    h1 {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    .details-container {
+        background-color: #f7f7f7;
+        border-radius: 5px;
+        padding: 20px;
+        margin-bottom: 30px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .details-label {
+        font-weight: bold;
+    }
+
+    .details-value {
+        color: #333;
+    }
+
+    /* Styling for the buttons */
+    .button-group {
+        margin-top: 20px;
+    }
+
+    .btn {
+        padding: 8px 16px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        text-decoration: none;
+        color: #fff;
+    }
+
+    .btn-edit {
+        background-color: #3498db;
+    }
+
+    .btn-back {
+        background-color: #95a5a6;
+    }
+
+    .btn:hover {
+        background-color: #2c3e50;
+    }
+</style>
+
+<h1>Product Details</h1>
+
+<div class="details-container">
+    <h4>Product</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2 details-label">Name:</dt>
+        <dd class="col-sm-10 details-value">@Html.DisplayFor(model => model.Name)</dd>
+        <dt class="col-sm-2 details-label">Price:</dt>
+        <dd class="col-sm-10 details-value">@Html.DisplayFor(model => model.Price)</dd>
+        <dt class="col-sm-2 details-label">Category:</dt>
+        <dd class="col-sm-10 details-value">@Html.DisplayFor(model => model.Category.Name)</dd>
+    </dl>
+</div>
+
+<div class="button-group">
+    <a class="btn btn-edit" asp-action="Edit" asp-route-id="@Model?.Id">Edit</a>
+    <a class="btn btn-back" asp-action="Index">Back to List</a>
+</div>

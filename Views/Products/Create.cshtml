@@ -1,0 +1,120 @@
+﻿@model Task1_databaseConnect.Models.Product
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<style>
+    .card {
+        max-width: 400px;
+        margin: auto;
+        margin-top: 20px;
+        padding: 20px;
+        border: none;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    }
+
+    .card-body {
+        text-align: center;
+    }
+
+    .card-title {
+        font-size: 24px;
+        margin-bottom: 15px;
+    }
+
+    .form-control {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 10px;
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    .form-select {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 8px;
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        padding: 10px 20px;
+        cursor: pointer;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+    .text-danger {
+        color: #dc3545;
+        font-size: 14px;
+        margin-top: 5px;
+        display: block;
+    }
+
+    /* ... Previous styles ... */
+
+    .btn-secondary {
+        background-color: #6c757d;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        padding: 10px 20px;
+        cursor: pointer;
+    }
+
+        .btn-secondary:hover {
+            background-color: #5a6269;
+        }
+
+
+</style>
+
+<h1>Create</h1>
+
+<h4>Product</h4>
+<hr />
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Create New Product</h5>
+        <form asp-action="Create" class="product-form">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label">Product Name</label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label">Price</label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CategoryId" class="control-label required">Category</label>
+                <select asp-for="CategoryId" asp-items="@ViewBag.CategoryList" class="form-select">
+                    <option disabled selected>--Select Category--</option>
+                </select>
+                <span asp-validation-for="CategoryId" class="text-danger"></span>
+            </div>
+            <div class="form-group text-center">
+                <button type="submit" class="btn btn-primary">Create Product</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<div class="text-center mt-3">
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

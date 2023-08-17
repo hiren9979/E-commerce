@@ -1,0 +1,118 @@
+﻿@model IEnumerable<Task1_databaseConnect.Models.Product>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<style>
+    /* Styling for the table */
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        border: 1px solid #ddd;
+    }
+
+        .table th,
+        .table td {
+            padding: 8px;
+            text-align: left;
+        }
+
+        .table th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+    /* Styling for buttons */
+    .btn {
+        display: inline-block;
+        padding: 6px 12px;
+        margin-bottom: 0;
+        font-size: 14px;
+        font-weight: normal;
+        line-height: 1.42857143;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        cursor: pointer;
+        border: 1px solid transparent;
+        border-radius: 4px;
+    }
+
+    .btn-edit {
+        background-color: #fff3e0;
+        border-color: #ffd54f;
+        color: #e65100;
+    }
+
+    .btn-details {
+        background-color: #e3f2fd;
+        border-color: #2196f3;
+        color: #2196f3;
+    }
+
+    .btn-delete {
+        background-color: #ffebee;
+        border-color: #f44336;
+        color: #f44336;
+    }
+
+    /* Button hover effect */
+    .btn:hover {
+        background-color: #eee;
+    }
+
+    .category-link {
+        color: #1565c0;
+        text-decoration: none;
+        transition: color 0.3s;
+    }
+
+    .category-link:hover {
+        color: #1e88e5;
+    }
+
+</style>
+
+<p>
+    <a class="btn btn-success" asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <a class="category-link"  asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParam"]">Name</a>
+            </th>
+            <th>
+                <a class="category-link" asp-action="Index" asp-route-sortOrder="@ViewData["PriceSortParam"]">Price</a>
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category)
+            </th>   
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    <a class="category-link" asp-action="Index" asp-route-categoryId="@item.CategoryId"> @Html.DisplayFor(modelItem => item.CategoryId)</a>
+                </td>
+                <td>
+                    <a class="btn btn-edit" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a class="btn btn-details" asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a class="btn btn-delete" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a class="btn btn-edit" asp-action="Index">Back To Normal</a>
